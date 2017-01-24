@@ -130,7 +130,7 @@ add_dependencies(x264_test_subscriber x264_image_transport_gencpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(x264_image_transport ${catkin_LIBRARIES} ${FFMPEG_LIBRARIES}) 
 target_link_libraries(x264_test_publisher ${catkin_LIBRARIES})
-target_link_libraries(x264_test_subscriber ${catkin_LIBRARIES} ${FFMPEG_LIBRARIES})
+target_link_libraries(x264_test_subscriber ${catkin_LIBRARIES} ${FFMPEG_LIBRARIES} -lavformat -lavcodec -lavutil)
 
 #############
 ## Install ##

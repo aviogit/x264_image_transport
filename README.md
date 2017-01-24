@@ -7,21 +7,42 @@ Specifically, it provides a catkinized image transport plugin for recent version
 
 Installation
 ============
-Under current releases of ubuntu, system installed ffmpeg libraries are too old to support this software. To get around this, do the following (tested under ROS Indigo and Ubuntu 14.04 Trusty):
+Under current releases of Ubuntu, system installed ffmpeg libraries are too old to support this software. To get around this, do the following (tested under ROS Indigo and Ubuntu 14.04 Trusty):
 
-1. Rename/remove any previously build ffmpeg libraries installed in your home directory under ~/ffmpeg_build
+Quoting from this page: http://infoheap.com/install-ffmpeg-on-ubuntu-linux/
 
-2. Rebuild ffmpeg with shared libraries enabled and install them under ~/ffmpeg_build - this can be done using the included build_ffmpeg.sh script
+--------------
 
-3. Ensure that the built libraries are on path by adding
+Ubuntu Linux (14.04) does not have ffmpeg in default package source repositories. ffmpeg can be installed using mc3man ppa (personal package archive) using the following steps.
 
-  "export LD_LIBRARY_PATH=$HOME/ffmpeg_build/lib:$LD_LIBRARY_PATH"
-  
-  to the bottom of your .bashrc file.
+1. Add mc3man ppa to apt source
 
-4. build the project using catkin_make
+$ sudo add-apt-repository ppa:mc3man/trusty-media
 
-5. test by running: roslaunch x264_image_transport test_x264.launch
+2. Resynchronize the package index files from their sources
+
+$ sudo apt-get update
+
+3. Check where will ffmpeg be installed
+
+$ apt-cache policy ffmpeg
+
+ffmpeg:
+  Installed: (none)
+  Candidate: 7:2.8.4+git1~trusty
+  Version table:
+     7:2.8.4+git1~trusty 0
+        500 http://ppa.launchpad.net/mc3man/trusty-media/ubuntu/ trusty/main amd64 Packages
+
+4. Install ffmpeg using apt-get
+
+$ sudo apt-get install ffmpeg
+
+--------------
+
+5. build the project using catkin_make
+
+6. test by running: roslaunch x264_image_transport test_x264.launch
 
 Contributors
 ============
